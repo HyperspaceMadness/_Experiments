@@ -1,0 +1,89 @@
+{
+  "name": "vscode-multi-word-search",
+  "displayName": "Multi-Word Search",
+  "description": "Search for multiple words appearing in the same file, ranked by match count and proximity",
+  "version": "0.1.0",
+  "publisher": "hyperspacemadness",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "browser": "./dist/web/extension.js",
+  "activationEvents": [
+    "onView:multiwordSearch.searchView"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "multiword-search",
+          "title": "Multi-Word Search",
+          "icon": "$(search-fuzzy)"
+        }
+      ]
+    },
+    "views": {
+      "multiword-search": [
+        {
+          "type": "webview",
+          "id": "multiwordSearch.searchView",
+          "name": "Multi-Word Search"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "multiwordSearch.focus",
+        "title": "Focus Multi-Word Search",
+        "category": "Multi-Word Search"
+      },
+      {
+        "command": "multiwordSearch.clearResults",
+        "title": "Clear Results",
+        "category": "Multi-Word Search"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "multiwordSearch.focus",
+        "key": "ctrl+shift+m",
+        "mac": "cmd+shift+m"
+      }
+    ],
+    "configuration": {
+      "title": "Multi-Word Search",
+      "properties": {
+        "multiwordSearch.maxFileSize": {
+          "type": "number",
+          "default": 1048576,
+          "description": "Maximum file size in bytes to search (default 1MB)"
+        },
+        "multiwordSearch.excludePatterns": {
+          "type": "array",
+          "default": [
+            "**/node_modules/**",
+            "**/.git/**"
+          ],
+          "description": "Glob patterns to exclude from search"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "npm run build:desktop && npm run build:web",
+    "build:desktop": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "build:web": "esbuild ./src/extension.ts --bundle --outfile=dist/web/extension.js --external:vscode --format=cjs --platform=browser --sourcemap",
+    "watch": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap --watch",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0"
+  }
+}
