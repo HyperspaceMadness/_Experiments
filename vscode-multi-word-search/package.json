@@ -78,7 +78,8 @@
     "build:desktop": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
     "build:web": "esbuild ./src/extension.ts --bundle --outfile=dist/web/extension.js --external:vscode --format=cjs --platform=browser --sourcemap",
     "watch": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap --watch",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
