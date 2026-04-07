@@ -1,0 +1,17 @@
+{
+  "name": "Multi-Word Search Extension",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+  "postCreateCommand": "cd vscode-multi-word-search && npm install && npm run build",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "typescript.tsdk": "vscode-multi-word-search/node_modules/typescript/lib"
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "remoteUser": "node"
+}
