@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build:web",
+      "type": "npm",
+      "script": "build:web",
+      "problemMatcher": []
+    },
+    {
+      "label": "build:desktop",
+      "type": "npm",
+      "script": "build:desktop",
+      "problemMatcher": []
+    },
+    {
+      "label": "watch",
+      "type": "npm",
+      "script": "watch",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
